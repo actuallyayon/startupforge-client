@@ -61,6 +61,3 @@ src/
   context/           # AuthContext, ThemeContext
   lib/               # authClient, axios api
 ```
-
-## License
-MIT
