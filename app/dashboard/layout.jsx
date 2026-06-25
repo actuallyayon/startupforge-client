@@ -1,5 +1,10 @@
 import DashboardLayout from '../../src/components/dashboard/DashboardLayout';
+import PrivateRoute from '../../src/components/PrivateRoute';
 
 export default function Layout({ children }) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return (
+    <PrivateRoute>
+      <DashboardLayout>{children}</DashboardLayout>
+    </PrivateRoute>
+  );
 }

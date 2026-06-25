@@ -1,3 +1,5 @@
+import PrivateRoute from '../../../src/components/PrivateRoute';
+
 export default function AdminLayout({ children }) {
-  return <>{children}</>;
+  return <PrivateRoute roles={['admin']}>{children}</PrivateRoute>;
 }
