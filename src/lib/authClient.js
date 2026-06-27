@@ -1,10 +1,9 @@
 import { createAuthClient } from 'better-auth/react'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
-
-// Better Auth React client. baseURL points at the server's /api/auth handler.
+// No baseURL → Better Auth defaults to the current origin's /api/auth, which
+// Next.js proxies to the server (see next.config.js). Same-origin keeps the
+// session cookie first-party so it works in every browser.
 export const authClient = createAuthClient({
-  baseURL: `${API_URL}/api/auth`,
   fetchOptions: {
     credentials: 'include',
   },

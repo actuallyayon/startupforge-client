@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
-
-// Axios instance for our own API. withCredentials sends the JWT + Better Auth cookies.
+// Same-origin: requests go to /api/* and Next.js (see next.config.js rewrites)
+// proxies them to the API server. Talking only to our own origin keeps the JWT +
+// Better Auth cookies first-party, so they work in every browser.
+// withCredentials sends those cookies.
 export const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: '/api',
   withCredentials: true,
 })
 

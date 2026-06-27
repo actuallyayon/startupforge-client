@@ -6,7 +6,7 @@ const IMGBB_KEY = process.env.NEXT_PUBLIC_IMGBB_KEY
 export async function uploadImage(file) {
   if (!file) return ''
   if (!IMGBB_KEY) {
-    throw new Error('VITE_IMGBB_KEY is not configured')
+    throw new Error('NEXT_PUBLIC_IMGBB_KEY is not configured')
   }
   const formData = new FormData()
   formData.append('image', file)
