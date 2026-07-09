@@ -1,63 +1,150 @@
-# StartupForge — Client
+# StartupForge Client
 
-The frontend for **StartupForge**, a platform where startup founders build teams and collaborators find opportunities to join.
+StartupForge is a full-stack platform for startup founders to publish their startups, post collaboration opportunities, review applications, and build early teams. Collaborators can browse startup opportunities, apply to roles, and track their application status from a dedicated dashboard.
 
-**Live Site:** https://startupforge-client-nine.vercel.app
-**Server Repo:** https://github.com/actuallyayon/startupforge-server
+## Live Project
 
-## Tech Stack
-- **Next.js 15 (App Router & Server/Client Components)**
-- **Next.js Middleware** (JWT and role-based route protection)
-- **TanStack Query** (data fetching & caching)
-- **Tailwind CSS** (responsive design, dark/light theme, Next/font integration)
-- **Framer Motion** (animations)
-- **Better Auth** (Next.js integration — email/password + Google)
-- **Recharts** (dashboard charts)
-- **react-hook-form**, **react-hot-toast**, **axios**
+- Live site: https://startupforge-client-nine.vercel.app
+- Client repository: https://github.com/actuallyayon/startupforge-client
+- Server repository: https://github.com/actuallyayon/startupforge-server
 
-## Features
-- Auth: register (with role + imgbb image), login, Google sign-in
-- Home with banner, featured startups/opportunities, success stories, and animations
-- Browse Opportunities with **server-side search, filters, and pagination**
-- **Founder dashboard:** create/manage startup, post/manage opportunities, review applications, premium upgrade
-- **Collaborator dashboard:** apply, track application status, manage profile
-- **Admin dashboard:** manage users (block/unblock), approve/remove startups, view transactions & revenue
-- Stripe Checkout for the founder premium package
-- Dark / light theme toggle
-- Fully responsive (mobile / tablet / desktop)
+## Screenshot
 
-## Getting Started
+![StartupForge home page](public/startupforge-screenshot.png)
+
+## Technologies Used
+
+- Next.js 15 with the App Router
+- React 18
+- Tailwind CSS
+- TanStack Query
+- Better Auth
+- Axios
+- Framer Motion
+- Recharts
+- Stripe
+- imgbb
+- Vercel
+
+## Core Features
+
+- Founder, collaborator, and admin role-based dashboards
+- Email/password authentication and Google sign-in
+- Startup browsing with detailed startup pages
+- Opportunity browsing with server-side search, filters, and pagination
+- Founder tools for creating startups, posting opportunities, reviewing applications, and upgrading to premium
+- Collaborator tools for applying to opportunities, tracking applications, and managing profile details
+- Admin tools for managing users, startup approvals, transactions, and revenue insights
+- Stripe checkout flow for founder premium upgrades
+- Responsive dark and light themed UI
+- Next.js API rewrites for first-party API calls through `/api/*`
+
+## Dependencies
+
+Main runtime dependencies:
+
+- `@stripe/stripe-js`
+- `@tanstack/react-query`
+- `axios`
+- `better-auth`
+- `framer-motion`
+- `next`
+- `react`
+- `react-dom`
+- `react-hook-form`
+- `react-hot-toast`
+- `react-icons`
+- `recharts`
+
+Development dependencies:
+
+- `autoprefixer`
+- `postcss`
+- `tailwindcss`
+
+## Run Locally
+
+Follow these steps to run the client on your machine.
+
+1. Clone the repository.
+
+```bash
+git clone https://github.com/actuallyayon/startupforge-client.git
+cd startupforge-client
+```
+
+2. Install dependencies.
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in real values
-npm run dev                  # http://localhost:3000
 ```
 
-## Environment Variables
-See [.env.example](.env.example):
-- `NEXT_PUBLIC_API_URL` — base URL of the StartupForge server (e.g. `http://localhost:5000`)
-- `NEXT_PUBLIC_IMGBB_KEY` — imgbb API key for image uploads
-- `NEXT_PUBLIC_STRIPE_PUBLIC_KEY` — Stripe publishable key
+3. Create a local environment file.
 
-## Build & Deploy
 ```bash
-npm run build   # builds the Next.js production bundle
-npm run start   # starts the production server
+cp .env.example .env.local
+```
+
+On Windows PowerShell, use:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+4. Add the required environment variables in `.env.local`.
+
+```env
+API_PROXY_TARGET=http://localhost:5000
+NEXT_PUBLIC_IMGBB_KEY=your_imgbb_api_key
+NEXT_PUBLIC_STRIPE_PUBLIC_KEY=pk_test_xxx
+```
+
+5. Start the backend server.
+
+Use the StartupForge server repository and make sure it is running on the same URL used in `API_PROXY_TARGET`.
+
+6. Start the development server.
+
+```bash
+npm run dev
+```
+
+7. Open the app in your browser.
+
+```text
+http://localhost:3000
+```
+
+## Available Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
 ```
 
 ## Project Structure
+
 ```text
 app/
-  (public)/          # Marketing pages (/, /startups, /opportunities, /login, /register)
-  dashboard/         # Role-based dashboard layouts
-    admin/           # Admin protected routes
-    collaborator/    # Collaborator protected routes
-    founder/         # Founder protected routes
-  layout.jsx         # Root layout with fonts, providers, and metadata
-  payment-success/   # Stripe redirect success page
+  dashboard/          Role-based dashboard routes
+  login/              Login page
+  opportunities/      Opportunity listing and details
+  payment-success/    Stripe success redirect page
+  register/           Registration page
+  startups/           Startup listing and details
 src/
-  components/        # Reusable UI (Navbar, Footer, cards, charts)
-  context/           # AuthContext, ThemeContext
-  lib/               # authClient, axios api
+  components/         Shared UI and dashboard components
+  context/            Auth and theme providers
+  lib/                API, auth, and imgbb helpers
+public/
+  startupforge-screenshot.png
 ```
+
+## Relevant Resources
+
+- Next.js documentation: https://nextjs.org/docs
+- Tailwind CSS documentation: https://tailwindcss.com/docs
+- TanStack Query documentation: https://tanstack.com/query/latest
+- Better Auth documentation: https://www.better-auth.com/docs
+- Stripe documentation: https://docs.stripe.com
